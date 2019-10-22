@@ -16,7 +16,7 @@
 #  
 # 2. Installation
 #  - Clone project into user home directory - https://github.com/dustinredmon/NovaProspekt-Project1.git
-#  - run ansible-playbook --connection=localhost ~/NovaProspekt-Project1/ansible/setup.yml
+#  - run ansible-playbook --connection=localhost ~/NovaProspekt-Project1/ansible/setup.yml #Edit this to apply with terraform
 #
 # 3. Contribute and Contact
 #  - Github: https://github.com/qusad/NovaProspekt-Project0
