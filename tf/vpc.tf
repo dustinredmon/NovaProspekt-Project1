@@ -22,6 +22,7 @@ resource "aws_vpc" "vpc_main" {
 #public subnet 1 - 4094 usable hosts
 resource "aws_subnet" "sub_1_public" {
   vpc_id     = "${aws_vpc.vpc_main.id}"
+  availability_zone = "us-west-2a"
   cidr_block = "172.31.0.0/20"
 
   tags = {
@@ -32,6 +33,7 @@ resource "aws_subnet" "sub_1_public" {
 #public subnet 2 - 4094 usable hosts
 resource "aws_subnet" "sub_2_public" {
   vpc_id     = "${aws_vpc.vpc_main.id}"
+  availability_zone = "us-west-2b"
   cidr_block = "172.31.16.0/20"
 
   tags = {
@@ -42,6 +44,7 @@ resource "aws_subnet" "sub_2_public" {
 #public subnet 3 - 4094 usable hosts
 resource "aws_subnet" "sub_3_public" {
   vpc_id     = "${aws_vpc.vpc_main.id}"
+  availability_zone = "us-west-2c"
   cidr_block = "172.31.32.0/20"
 
   tags = {
@@ -52,6 +55,7 @@ resource "aws_subnet" "sub_3_public" {
 #private subnet 1 - 8190 usable hosts
 resource "aws_subnet" "sub_1_private" {
   vpc_id     = "${aws_vpc.vpc_main.id}"
+  availability_zone = "us-west-2a"
   cidr_block = "172.31.64.0/19"
 
   tags = {
@@ -62,6 +66,7 @@ resource "aws_subnet" "sub_1_private" {
 #private subnet 2 - 8190 usable hosts
 resource "aws_subnet" "sub_2_private" {
   vpc_id     = "${aws_vpc.vpc_main.id}"
+  availability_zone = "us-west-2b"
   cidr_block = "172.31.96.0/19"
 
   tags = {
@@ -72,6 +77,7 @@ resource "aws_subnet" "sub_2_private" {
 #private subnet 3 - 8190 usable hosts
 resource "aws_subnet" "sub_3_private" {
   vpc_id     = "${aws_vpc.vpc_main.id}"
+  availability_zone = "us-west-2c"
   cidr_block = "172.31.128.0/19"
 
   tags = {
