@@ -7,7 +7,7 @@ variable "ssh_key_encoding" {
 
 ########################## profider ######
 provider "aws" {
-   region = "us-west-1"
+   region = "us-west-2"
 }
 
 ##################### setup USERS section ############################
