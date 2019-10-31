@@ -1,12 +1,3 @@
-/* terraform {
-	backend  "s3" {
-		region = "us-west-2" 
-		bucket = "novaprospekt-bucket"
-		key = "terraform.tfstate"
-		dynamodb_table = "tf-state-lock"
-	}
-} */
-
 #NAT Gateway
 resource "aws_eip" "nat" {
 	vpc = "true"
