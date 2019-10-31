@@ -9,7 +9,7 @@ terraform {
 
 resource "aws_elb" "np-elb" {
   name = "np-elb"
-  subnets = ["${aws_subnet.server-1-private.id}", "${aws_subnet.server-1-private.id}"]
+  subnets = ["${aws_subnet.main-1-public.id}", "${aws_subnet.main-2-public.id}"]
   security_groups = ["${aws_security_group.elb-securitygroup.id}"]
   listener {
     instance_port = 80
