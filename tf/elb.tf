@@ -1,12 +1,3 @@
-terraform {
-    backend  "s3" {
-    region         = "us-west-2"
-    bucket         = "novaprospekt-bucket"
-    key            = "npkey/terraform.tfstate"
-    dynamodb_table = "tf-state-lock"
-    }
-}
-
 resource "aws_elb" "np-elb" {
   name = "np-elb"
   subnets = ["${aws_subnet.main-1-public.id}", "${aws_subnet.main-2-public.id}"]
