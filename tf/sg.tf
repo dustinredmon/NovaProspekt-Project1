@@ -14,7 +14,8 @@ resource "aws_security_group" "bastion-sg" {
     to_port = 80
     protocol = "tcp"
     security_groups = ["${aws_security_group.elb-securitygroup.id}"]
-
+  }
+	
   egress {
     protocol    = -1
     from_port   = 0 
