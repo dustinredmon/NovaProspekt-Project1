@@ -1,7 +1,3 @@
-provider "aws" {
-  region = "us-west-2"
-}
-
 resource "aws_acm_certificate" "default" {
   domain_name = "novaprospekt.xyz"
   validation_method = "DNS"

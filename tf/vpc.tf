@@ -20,7 +20,7 @@ resource "aws_subnet" "bastion-1-public" {
 	vpc_id = "${aws_vpc.main_vpc.id}"
 	cidr_block = "10.0.1.0/24"
 	map_public_ip_on_launch = "true"
-	availability_zone = "us-west-2a"
+	availability_zone = "us-west-2c"
 	tags = {
 		Name = "bastion-1-public"
 	}
@@ -69,26 +69,37 @@ resource "aws_subnet" "server-2-private" {
 }
 
 #NAT Gateway
-resource "aws_internet_gateway" "main-natgate" {
+resource "aws_internet_gateway" "main-gate" {
 	vpc_id = "${aws_vpc.main_vpc.id}"
 	tags = {
-		Name = "main-natgate"
+		Name = "main-gate"
 	}
 }
 
 #Route tables
-resource "aws_route_table" "main-public" {
+resource "aws_route_table" "main-table-public" {
 	vpc_id = "${aws_vpc.main_vpc.id}"
 	route {
 		cidr_block = "0.0.0.0/0"
-		gateway_id = "${aws_internet_gateway.main-natgate.id}"
+		gateway_id = "${aws_internet_gateway.main-gate.id}"
 	}
 	tags = {
-		Name = "main-public"
+		Name = "main-table-public"
 	}
 }
 
-resource "aws_route_table_association" "bastion-1" {
+resource "aws_route_table_association" "bastion-route" {
 	subnet_id = "${aws_subnet.bastion-1-public.id}"
-	route_table_id = "${aws_route_table.main-public.id}"
+	route_table_id = "${aws_route_table.main-table-public.id}"
 }
+
+resource "aws_route_table_association" "public-1-route" {
+        subnet_id = "${aws_subnet.main-1-public.id}"
+        route_table_id = "${aws_route_table.main-table-public.id}"
+}
+
+resource "aws_route_table_association" "public-2-route" {
+        subnet_id = "${aws_subnet.main-2-public.id}"
+        route_table_id = "${aws_route_table.main-table-public.id}"
+}
+
