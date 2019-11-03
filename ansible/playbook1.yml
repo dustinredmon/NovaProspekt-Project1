@@ -1,0 +1,29 @@
+
+---
+
+- hosts: tag_Name_..., tag_Name_... #replace ... with tagged names for ec2 instances
+  sudo: yes
+  tasks:
+    - name: update cache
+      apt: update_cache=true
+
+    - name: install apache
+      apt: name=apache2 update_cache=yes state=latest
+
+    - name: Install PHP
+      apt:
+        name: ['php','php-mysql','libapache2-mod-php','php7.2-cl$
+        state: latest
+
+    - name: Install MySQL
+      apt: name=mysql-client state=present
+
+    - name: editing apache2.conf
+      replace:
+        path: /etc/apache2/apache2.conf
+        regexp: '^<Directory /var/www/>'
+        replace: '<Directory /var/www/html>'
+        backup: yes
+
+    - name: restart apache
+      service: name=apache2 state=restarted

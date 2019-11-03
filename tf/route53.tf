@@ -1,7 +1,3 @@
-resource "aws_route53_zone" "external" {
-  name = "novaprospekt.xyz"
-}
-
 resource "aws_route53_record" "www" {
   zone_id = "${aws_route53_zone.external.zone_id}"
   name    = "www.novaprospekt.xyz"
@@ -14,7 +10,7 @@ resource "aws_route53_record" "www" {
   }
 }
 
-/*resource "aws_route53_record" "apex" {
+resource "aws_route53_record" "apex" {
   zone_id = "${aws_route53_zone.external.zone_id}"
   name    = "novaprospekt.xyz"
   type    = "A"
@@ -24,5 +20,4 @@ resource "aws_route53_record" "www" {
     zone_id                = "${aws_route53_record.www.zone_id}"
     evaluate_target_health = true
   }
-}*/
-
+}

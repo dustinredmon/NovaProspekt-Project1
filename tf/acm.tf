@@ -1,7 +1,3 @@
-/*provider "aws" {
-  region = "us-west-2"
-}*/
-
 resource "aws_acm_certificate" "default" {
   domain_name = "novaprospekt.xyz"
   validation_method = "DNS"
@@ -9,7 +5,6 @@ resource "aws_acm_certificate" "default" {
 
 data "aws_route53_zone" "external" {
   name = "novaprospekt.xyz"
-  #vpc_id = "${aws_vpc.main_vpc.id}"
 }
 
 resource "aws_route53_record" "validation" {
