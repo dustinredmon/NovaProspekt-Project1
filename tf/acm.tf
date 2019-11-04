@@ -31,7 +31,6 @@ resource "aws_acm_certificate_validation" "default" {
   validation_record_fqdns = [
     "${aws_route53_record.validation.fqdn}",
     "${aws_route53_record.cert_validation_alt1.fqdn}",
-    "${aws_route53_record.cert_validation_alt2.fqdn}",
   ]
 }
 
