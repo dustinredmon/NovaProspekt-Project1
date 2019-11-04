@@ -21,7 +21,7 @@ resource "aws_route53_record" "apex" {
 
   alias {
     name                   = "www.novaprospekt.xyz"
-    zone_id                = "${aws_route53_record.www.zone_id}"
+    zone_id                = "${data.aws_route53_zone.external-2.zone_id}"
     evaluate_target_health = true
   }
 }
