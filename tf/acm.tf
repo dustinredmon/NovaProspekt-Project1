@@ -2,7 +2,7 @@ resource "aws_acm_certificate" "default" {
   domain_name = "novaprospekt.xyz"
   validation_method = "DNS"
   subject_alternative_names = [
-    "www.novaprospekt.xyz",
+    "*.novaprospekt.xyz",
   ]
 }
 
