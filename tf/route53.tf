@@ -3,7 +3,7 @@ data "aws_route53_zone" "external-2" {
 }
 
 resource "aws_route53_record" "www" {
-  zone_id = "${aws_route53_zone.external-2.zone_id}"
+  zone_id = "${data.aws_route53_zone.external-2.zone_id}"
   name    = "www.novaprospekt.xyz"
   type    = "A"
 
@@ -15,7 +15,7 @@ resource "aws_route53_record" "www" {
 }
 
 resource "aws_route53_record" "apex" {
-  zone_id = "${aws_route53_zone.external-2.zone_id}"
+  zone_id = "${data.aws_route53_zone.external-2.zone_id}"
   name    = "novaprospekt.xyz"
   type    = "A"
 
