@@ -1,10 +1,11 @@
 resource "aws_acm_certificate" "default" {
   domain_name = "novaprospekt.xyz"
   validation_method = "DNS"
+  subject_alternative_names = ["*.novaprospekt.xyz"]
 }
 
 data "aws_route53_zone" "external" {
-  name = "novaprospekt.xyz"
+  name = "novaprospekt.xyz."
 }
 
 resource "aws_route53_record" "validation" {
@@ -21,4 +22,3 @@ resource "aws_acm_certificate_validation" "default" {
     "${aws_route53_record.validation.fqdn}",
   ]
 }
-

@@ -8,7 +8,7 @@ resource "aws_security_group" "bastion-sg" {
     to_port     = 22
     cidr_blocks = ["0.0.0.0/0"]
   }
-	
+
   egress {
     protocol    = -1
     from_port   = 0 
@@ -34,7 +34,14 @@ resource "aws_security_group" "server-sg" {
     protocol = "tcp"
     security_groups = ["${aws_security_group.elb-securitygroup.id}"]
   }
-  
+
+  ingress {
+    from_port = 443
+    to_port = 443
+    protocol = "tcp"
+    security_groups = ["${aws_security_group.elb-securitygroup.id}"]
+  }
+
   egress {
     protocol    = -1
     from_port   = 0
