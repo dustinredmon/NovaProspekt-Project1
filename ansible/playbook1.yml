@@ -1,7 +1,7 @@
 
 ---
 
-- hosts: tag_Name_...#tag value of application server should go here for dynamic inventory lookup
+- hosts: tag_Name_server1
   sudo: yes
   gather_facts: no
   remote_user: ubuntu
