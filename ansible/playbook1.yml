@@ -49,18 +49,15 @@
 #        group: www-data
         state: link
     
-    - name: rewrite engine mod
-      command: sudo a2enmod rewrite
-      
     - name: http to https redirect
       blockinfile:
-        path: /etc/apache2/apache2.conf
+        path: /etc/apache2/sites-available/000-default.conf
+        insertbefore: "</VirtualHost>"
         block: |
-          <VirtualHost *:80>
+          #HTTP to HTTPS redirect
           RewriteEngine On
           RewriteCond %{HTTP:X-Forwarded-Proto} =http
           RewriteRule .* https://%{HTTP:Host}%{REQUEST_URI} [L,R=permanent]
-          </VirtualHost>
           
     - name: restart apache
       service: name=apache2 state=restarted
