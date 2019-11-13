@@ -49,6 +49,9 @@
 #        group: www-data
         state: link
     
+    - name: rewrite engine mod
+      command: sudo a2enmod rewrite
+      
     - name: http to https redirect
       blockinfile:
         path: /etc/apache2/apache2.conf
