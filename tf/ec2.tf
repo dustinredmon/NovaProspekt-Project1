@@ -7,7 +7,7 @@ resource "aws_instance" "bastion" {
 	subnet_id = "${aws_subnet.bastion-1-public.id}"
 	vpc_security_group_ids = ["${aws_security_group.bastion-sg.id}"]
 	tags = {
-		Name = "bastion-1"
+		Name = "bastion_1"
 	}
 }
 
@@ -19,7 +19,7 @@ resource "aws_instance" "server-1" {
 	subnet_id = "${aws_subnet.server-1-private.id}"
 	vpc_security_group_ids = ["${aws_security_group.server-sg.id}"]
 	tags = {
-		Name = "server-1"
+		Name = "server_1"
 	}
 }
 
@@ -30,6 +30,6 @@ resource "aws_instance" "server-2" {
 	subnet_id = "${aws_subnet.server-2-private.id}"
 	vpc_security_group_ids = ["${aws_security_group.server-sg.id}"]
 	tags = {
-		Name = "server-2"
+		Name = "server_2"
 	}
 }
