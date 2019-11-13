@@ -37,15 +37,19 @@
         regexp: '^\sDocumentRoot /var/www/html'
         replace: 'DocumentRoot /var/www/html/public'
 
+    - git:
+        repo: https://github.com/dustinredmon/NovaProspekt-Project1
+        dest: /home/ubuntu/repo1/
+
     - name: copy html from repo to /var/www/html/public
       file:
-        src: /home/NovaProspekt-Project1/html
+        src: /home/ubuntu/repo1/html
         dest: /var/www/html/public
 #        owner: www-data
 #        group: www-data
 
     - name: restart apache
-      service: name=apache2 state=start
+      service: name=apache2 state=restarted
 
     - set_fact:
          ansible_connection=ssh
