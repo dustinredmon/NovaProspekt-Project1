@@ -5,6 +5,11 @@ variable "ssh_key_encoding" {
    default = "SSH"
 }
 
+########################## profider ######
+/*provider "aws" {
+   region = "us-west-2"
+}*/
+
 ##################### setup USERS section ############################
 
 #iam users
