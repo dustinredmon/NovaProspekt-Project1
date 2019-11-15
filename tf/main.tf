@@ -1,16 +1,19 @@
-terraform {
+#Un-comment this block after creation of the s3 bucket
+/*terraform {
     backend  "s3" {
     region         = "us-west-2"
     bucket         = "novaprospekt-bucket"
     key            = "npkey/terraform.tfstate"
     dynamodb_table = "tf-state-lock"
     }
-}
+}*/
 
+#AWS provider region
 provider "aws" {
   region     = "us-west-2"
 }
 
+#AWS s3 bucket creation to store the terraform state files
 resource "aws_s3_bucket" "tf-remote-state" {
   bucket = "novaprospekt-bucket"
 
