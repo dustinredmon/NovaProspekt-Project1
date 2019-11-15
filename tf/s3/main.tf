@@ -1,13 +1,3 @@
-#AWS s3 backend for terraform state 
-terraform {
-	backend  "s3" {
-	region = "us-west-2"
-	bucket = "novaprospekt-bucket"
-	key = "terraform.tfstate"
-	dynamodb_table = "tf-state-lock"    
-	}
-}
-
 #AWS provider region
 provider "aws" {
   region     = "us-west-2"
