@@ -1,12 +1,12 @@
 #AWS s3 bucket for storage
-/*terraform {
+terraform {
 	backend  "s3" {
 	region = "us-west-2"
 	bucket = "novaprospekt-bucket"
 	key = "terraform.tfstate"
 	dynamodb_table = "tf-state-lock"    
 	}
-}*/ 
+}
 
 #AWS VPC Setup
 resource "aws_vpc" "main_vpc" {
@@ -74,7 +74,7 @@ resource "aws_subnet" "server-2-private" {
 	}
 }
 
-#NAT Gateway
+#Internet Gateway
 resource "aws_internet_gateway" "main-gate" {
 	vpc_id = "${aws_vpc.main_vpc.id}"
 	tags = {
