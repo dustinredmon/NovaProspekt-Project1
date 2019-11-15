@@ -47,7 +47,18 @@
         dest: /var/www/html/public
 #        owner: www-data
 #        group: www-data
-
+        state: link
+    
+    - name: http to https redirect
+      blockinfile:
+        path: /etc/apache2/apache2.conf
+        block: |
+          <VirtualHost *:80>
+          RewriteEngine On
+          RewriteCond %{HTTP:X-Forwarded-Proto} =http
+          RewriteRule .* https://%{HTTP:Host}%{REQUEST_URI} [L,R=permanent]
+          </VirtualHost>
+          
     - name: restart apache
       service: name=apache2 state=restarted
 
