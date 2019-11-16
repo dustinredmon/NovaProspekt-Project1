@@ -96,3 +96,53 @@ resource "aws_iam_group" "users" {
 
 
 ##################### end of GROUPS section ####
+
+
+############ lambda_function_policy #####
+resource "aws_iam_group_policy" "lambda_policy" {
+   name = "lambda_policy"
+   group = "${aws_iam_group.admins.id}"
+   policy = <<EOF
+{
+   "Version": "2012-10-17",
+   "Statement": [
+     {
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:logs:*:*:*"
+     },
+     {
+      "Effect":"Allow",
+      "Action": [
+        "ec2:Start*",
+        "ec2:Stop*"
+       ],
+      "Resource": "*"
+     }
+   ]
+}
+EOF
+}
+########## lambda_role ###############
+resource "aws_iam_role" "lambda_execution_role" {
+  name = "lambda_execution_role"
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "lambda.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
+}
+EOF
+}
