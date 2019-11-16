@@ -1,3 +1,13 @@
+
+##################################################################################################
+# CIT480 - Group Project 1                                                                       #
+# Team Name: NovaProspekt                                                                        #
+# Team Members: Vlad Shtyrts, Dustin Redmon, Viktar Mizeryia                                     #
+# Description: Web server using terraform and ansible                                            #
+# https://novaprospekt.xyz/                                                                      #
+##################################################################################################
+
+# 1. Features
 # Project 1: build simple LAMP stack and deploy weather app using ansible 
 
 This ansible playbook installes LAMP stack and weather application on servers specified in [hosts] section of playbook. Using dynamic inventories ansible discovers available ec2 instances and compares their tag_Name with specified in playbook. In case of match, ansible establish ssh connection to remote host (via ssh forwarding) and applies playbook to hosts.
@@ -9,6 +19,8 @@ This ansible playbook implements **dynamic inventory**. Out of two options to im
 Boto is an Amazon AWS SDK for python. Ansible internally uses Boto to connect to Amazon EC2 instances and hence you need Boto library in order to run Ansible on your laptop/desktop.
 
 Requirement of the project is application servers to be in private subnets. This requires additional configuration of ec2.ini and configuration of ssh **config** file to allow ssh forwarding. Before to run this playbook following modifications need to be done:
+
+# 2. Installation
 
 ### ec2.ini configuration file:
 According to this requirement following changes needed in default configuration of ec2.ini:
@@ -60,5 +72,16 @@ Alternatively ssh **config** file can be mofified:
 
       [inventory]
       inventory = /etc/ansible/ec2.py
-      
+     
+# 3. Contribute and Contact
+#  - Github: https://github.com/dustinredmon/NovaProspekt-Project1
+#  - Vlad Shtyrts: vlad.shtyrts.599@my.csun.edu
+#  - Dustin Redmon: dustin.redmon.39@my.csun.edu
+#  - Viktar Mizeryia: viktar.mizeryia.33@my.csun.edu
+#
+# 4. LICENSE
+#  - GNU GENERAL PUBLIC LICENSE
+#
+
+
 

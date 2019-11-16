@@ -1,0 +1,22 @@
+---
+
+- hosts: tag_Name_bastion_1
+  sudo: yes
+  gather_facts: no
+  remote_user: ubuntu
+  
+  tasks:
+    - name: install fail2ban
+      apt: 
+        name: "fail2ban"
+        state: latest
+    - name: install sendmail
+      apt:
+        name: "sendmail"
+        state: latest
+        
+    - name: override default config with .local config file 
+      copy:
+         src: /etc/fail2ban/jail.conf
+         dest: /etc/fail2ban/jail.local
+         remote_src: true
