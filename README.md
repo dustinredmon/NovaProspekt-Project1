@@ -32,7 +32,7 @@
 #  - Return to /tf folder and run terraform init and terraform apply again. This will build the infrastructure
 #
 #  Ansible install:
-#  -
+#  - see ansible readme
 #
 #  LAMDA function install:
 #  - Locate the startEC2.py and stopEC2.py
