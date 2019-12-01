@@ -34,7 +34,7 @@ resource "aws_backup_plan" "np-backup" {
 
   rule {
     rule_name         = "Weekly"
-    target_vault_name = "${aws_backup_vault.NPVault.name}"
+    target_vault_name = "${aws_backup_vault.np-vault.name}"
     schedule          = "cron(0 1 ? * 1 *)"
   }
 }
@@ -44,14 +44,14 @@ data "aws_iam_role" "backup-role" {
 }
 
 resource "aws_backup_selection" "example" {
-  iam_role_arn = "${aws_iam_role.backup-role.arn}"
+  iam_role_arn = "${data.aws_iam_role.backup-role.arn}"
   name         = "NPWeatherApp"
   plan_id      = "${aws_backup_plan.np-backup.id}"
 
   resources = [
-    "${aws_ebs_volume.bastion-volume.arn}",
-    "${aws_ebs_volume.server1-volume.arn}",
-    "${aws_ebs_volume.server2-volume.arn}",
+    "${data.aws_ebs_volume.bastion-volume.arn}",
+    "${data.aws_ebs_volume.server1-volume.arn}",
+    "${data.aws_ebs_volume.server2-volume.arn}",
     "${aws_dynamodb_table.dynamodb-tf-state-lock.arn}",
   ]
 }
