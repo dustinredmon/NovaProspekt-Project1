@@ -35,7 +35,7 @@ resource "aws_backup_plan" "np-backup" {
   rule {
     rule_name         = "Weekly"
     target_vault_name = "${aws_backup_vault.np-vault.name}"
-    schedule          = "cron(0 1 ? * 1 *)"
+    schedule          = "cron(0 1 ? * 2 *)"
   }
 }
 
@@ -43,7 +43,7 @@ data "aws_iam_role" "backup-role" {
   name = "AWSBackupDefaultServiceRole"
 }
 
-resource "aws_backup_selection" "example" {
+resource "aws_backup_selection" "np-resources" {
   iam_role_arn = "${data.aws_iam_role.backup-role.arn}"
   name         = "NPWeatherApp"
   plan_id      = "${aws_backup_plan.np-backup.id}"
