@@ -1,0 +1,29 @@
+---
+- hosts: localhost
+  sudo: yes
+
+  vars_prompt:
+    - name: AWSaccesskey
+      prompt: "Enter your AWS Access Key ID"
+      private: no
+
+    - name: AWSsecretkey
+      prompt: "Enter your AWS Secret Key"
+      private: no
+
+  tasks:
+    - name: Install terraform
+      unarchive:
+        src: https://releases.hashicorp.com/terraform/0.12.16/terraform_0.12.16_linux_amd64.zip
+        dest: /usr/bin
+        remote_src: yes
+    
+    - name: Install AWS-CLI
+      apt:
+        name: awscli
+    
+    - name: Generate ssh key
+      shell: ssh-keygen -t rsa -b 2048 -f ~/.ssh/keypair -N ""    
+
+    - name: copy ec2.py and ini into ansible config
+...

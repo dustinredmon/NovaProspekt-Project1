@@ -80,6 +80,6 @@ resource "aws_security_group" "elb-securitygroup" {
 #Public keys 'mypass'
 resource "aws_key_pair" "key_pair" {
 	key_name = "key_pair"
-	public_key = "${file("PATH/TO/KEY")}" #Generate ssh keys with ssh-keygen
+	public_key = "${file("~/.ssh/keypair.pub")}" #Generate ssh keys with ssh-keygen
 	#public_key = "ADD YOUR RSA SSH PUBLIC KEY HERE OR USE FILE REFERENCE ABOVE"
 }
