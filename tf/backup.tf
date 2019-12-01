@@ -34,7 +34,7 @@ resource "aws_backup_plan" "np-backup" {
 
   rule {
     rule_name         = "Weekly"
-    target_vault_name = "${aws_backup_vault.NPVault.name}"
+    target_vault_name = "${aws_backup_vault.np-vault.name}"
     schedule          = "cron(0 1 ? * 1 *)"
   }
 }
