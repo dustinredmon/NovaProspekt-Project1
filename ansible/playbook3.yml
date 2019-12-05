@@ -2,15 +2,6 @@
 - hosts: localhost
   sudo: yes
 
-  vars_prompt:
-    - name: AWSaccesskey
-      prompt: "Enter your AWS Access Key ID"
-      private: no
-
-    - name: AWSsecretkey
-      prompt: "Enter your AWS Secret Key"
-      private: no
-
   tasks:
     - name: Install terraform
       unarchive:
@@ -22,8 +13,30 @@
       apt:
         name: awscli
     
+    - pip:
+        name: boto3
+
     - name: Generate ssh key
       shell: ssh-keygen -t rsa -b 2048 -f ~/.ssh/keypair -N ""    
 
-    - name: copy ec2.py and ini into ansible config
+    - name: Copy ec2.py and ini into ansible config
+      copy: src=~/NovaProspekt-Project1/ansible/{{ item }} dest=/etc/ansible 
+      with_items:
+         - ec2.py
+         - ec2.ini
+
+    - name: Edit ansible config to enable Dynamic Inventory
+      replace:
+        path: /etc/ansible/ansible.cfg
+        regexp: '^#inventory      = /etc/ansible/hosts' #spacing may cause issues on different versions
+        replace: 'inventory      = /etc/ansible/ec2.py'
+    
+    - pause:
+        prompt: "Do you want to configure AWS-cli (yes/no)?"
+      register: aws_prompt
+      delegate_to: localhost
+
+    - name: Run AWS-cli setup
+      shell: aws configure
+      when: hostvars['localhost'].aws_prompt.user_input | bool
 ...
