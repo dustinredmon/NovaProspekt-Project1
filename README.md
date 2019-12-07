@@ -22,6 +22,7 @@
 #  - Webservers on the private network only accept ssh connections from the bastion.
 #  - Admins can ssh into the bastion on the bastion public subnet to gain access to the private servers.
 #  - Fail2ban is running on the bastion to prevent brute force attacks.
+#  - AWS Backups create snapshots of EBS volumes and DynamoDB tables on a weekly basis every Monday at 1am.
 #
 # 2. Installation
 #  Infrastructure install:
