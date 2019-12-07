@@ -84,6 +84,7 @@ resource "aws_route_table" "main-table-public" {
 	}
 }
 
+#Route table association
 resource "aws_route_table_association" "bastion-route" {
 	subnet_id = "${aws_subnet.bastion-1-public.id}"
 	route_table_id = "${aws_route_table.main-table-public.id}"
