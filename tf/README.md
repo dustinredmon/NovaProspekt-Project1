@@ -12,7 +12,7 @@
 #    Users, and other necessary features.
 #
 # 2. Pre-requisites
-#   - Install and Configure
+#   - Install and Configure or run playbook3.yml for localhost setup
 #      Ansible:           https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
 #      Terraform:         https://learn.hashicorp.com/terraform/getting-started/install.html
 #      Dynamic Inventory: https://github.com/lesmono/devops-starter/tree/master/ansible/inventory
