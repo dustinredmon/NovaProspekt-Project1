@@ -12,13 +12,13 @@
 
 This ansible playbook installes LAMP stack and weather application on servers specified in [hosts] section of playbook. Using dynamic inventories ansible discovers available ec2 instances and compares their tag_Name with specified in playbook. In case of match, ansible establish ssh connection to remote host (via ssh forwarding) and applies playbook to hosts.
 
-This playbook was tested on macOS local host, and Ubuntu remote host.
+This playbook was tested on macOS local host and Ubuntu remote host.
 
-This ansible playbook implements **dynamic inventory**. Out of two options to implement **DI** (dynamic plugins and dynamic scripts) we used dynamic scripts: ec2.ini (configuration file) ec2.py (script). Download link: https://github.com/ansible/ansible/blob/devel/contrib/inventory/brook.py Store files in /etc/ansible/ folder.
+This ansible playbook implements **dynamic inventory**. Out of two options to implement **DI** (dynamic plugins and dynamic scripts) we used dynamic scripts: ec2.ini (configuration file) ec2.py (script). Download link: https://github.com/ansible/ansible/tree/devel/contrib/inventory Store files in /etc/ansible/ folder.
 
 Boto is an Amazon AWS SDK for python. Ansible internally uses Boto to connect to Amazon EC2 instances and hence you need Boto library in order to run Ansible on your laptop/desktop.
 
-Requirement of the project is application servers to be in private subnets. This requires additional configuration of ec2.ini and configuration of ssh **config** file to allow ssh forwarding. Before to run this playbook following modifications need to be done:
+Requirement of the project is application servers to be in private subnets. This requires additional configuration of ec2.ini and configuration of ssh **config** file to allow ssh forwarding. Before to run this playbook following modifications need to be done or **you can run the local_setup.yml in the ansible folder**:
 
 # 2. Installation
 
