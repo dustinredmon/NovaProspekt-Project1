@@ -1,4 +1,4 @@
-#AWS security groups
+#Security group for bastion server
 resource "aws_security_group" "bastion-sg" {
   name   = "bastion-sg"
   vpc_id = "${aws_vpc.main_vpc.id}"
@@ -18,6 +18,7 @@ resource "aws_security_group" "bastion-sg" {
   }
 }
 
+#Security group for private server instances
 resource "aws_security_group" "server-sg" {
   name   = "server-sg"
   vpc_id = "${aws_vpc.main_vpc.id}"
@@ -51,6 +52,7 @@ resource "aws_security_group" "server-sg" {
   }
 }
 
+#Security group for ELB
 resource "aws_security_group" "elb-securitygroup" {
   vpc_id = "${aws_vpc.main_vpc.id}"
   name = "elb-sg"
@@ -77,9 +79,9 @@ resource "aws_security_group" "elb-securitygroup" {
   }
 }
 
-#Public keys 'mypass'
+#Public key pair
 resource "aws_key_pair" "key_pair" {
 	key_name = "key_pair"
-	public_key = "${file("~/.ssh/keypair.pub")}" #Generate ssh keys with ssh-keygen
+	public_key = "${file("~/.ssh/keypair.pub")}" #Generate ssh keys with ssh-keygen or use local_setup.yml setup
 	#public_key = "ADD YOUR RSA SSH PUBLIC KEY HERE OR USE FILE REFERENCE ABOVE"
 }
