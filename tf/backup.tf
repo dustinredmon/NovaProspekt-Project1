@@ -38,7 +38,7 @@ resource "aws_backup_plan" "np-backup" {
     schedule          = "cron(0 1 ? * 2 *)"
     lifecycle = {
       cold_storage_after = 1
-      delete_after       = 7
+      delete_after       = 91
     }
   }
 }
