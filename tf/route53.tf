@@ -1,7 +1,9 @@
+#Route53 zone record
 data "aws_route53_zone" "external-2" {
   name = "novaprospekt.xyz"
 }
 
+#Route53 DNS A www record
 resource "aws_route53_record" "www" {
   zone_id = "${data.aws_route53_zone.external-2.zone_id}"
   name    = "www.novaprospekt.xyz"
@@ -14,6 +16,7 @@ resource "aws_route53_record" "www" {
   }
 }
 
+#Route53 DNS A apex record
 resource "aws_route53_record" "apex" {
   zone_id = "${data.aws_route53_zone.external-2.zone_id}"
   name    = "novaprospekt.xyz"
