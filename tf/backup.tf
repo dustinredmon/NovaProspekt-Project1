@@ -36,6 +36,10 @@ resource "aws_backup_plan" "np-backup" {
     rule_name         = "Weekly"
     target_vault_name = "${aws_backup_vault.np-vault.name}"
     schedule          = "cron(0 1 ? * 2 *)"
+    lifecycle = {
+      cold_storage_after = 1
+      delete_after       = 7
+    }
   }
 }
 
